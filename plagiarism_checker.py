@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup
 import hashlib
 
 def check_plagiarism(text):
-    query = '+'.join(text.split()[:8])  # Use first 8 words for Google search
+    query = '+'.join(text.split()[:8])
     url = f"https://www.google.com/search?q={query}"
     headers = {'User-Agent': 'Mozilla/5.0'}
 
@@ -17,7 +17,7 @@ def check_plagiarism(text):
 
     soup = BeautifulSoup(response.text, 'html.parser')
     links = soup.find_all('a')
-    
+
     hashes = []
     original_hash = hashlib.md5(text.encode('utf-8')).hexdigest()
 
